@@ -131,12 +131,36 @@ regenerateButton?.addEventListener('click', () => {
   }
 });
 
+const copyGeneratedText = async (text) => {
+  if (navigator.clipboard?.writeText) {
+    await navigator.clipboard.writeText(text);
+    return true;
+  }
+
+  const fallbackInput = document.createElement('textarea');
+  fallbackInput.value = text;
+  fallbackInput.setAttribute('readonly', '');
+  fallbackInput.style.position = 'fixed';
+  fallbackInput.style.opacity = '0';
+  document.body.appendChild(fallbackInput);
+  fallbackInput.select();
+  const copied = document.execCommand('copy');
+  document.body.removeChild(fallbackInput);
+  return copied;
+};
+
 copyButton?.addEventListener('click', async () => {
   if (!resultText?.textContent) return;
 
-  await navigator.clipboard.writeText(resultText.textContent);
   const originalLabel = copyButton.textContent;
-  copyButton.textContent = '已复制';
+
+  try {
+    const copied = await copyGeneratedText(resultText.textContent);
+    copyButton.textContent = copied ? '已复制' : '复制失败';
+  } catch (error) {
+    copyButton.textContent = '复制失败';
+  }
+
   setTimeout(() => {
     copyButton.textContent = originalLabel;
   }, 1400);
