@@ -19,6 +19,7 @@
         <span></span>
       </button>
       <nav class="site-nav" data-nav>
+        <a href="#generator">生成器</a>
         <a href="#copywriting">AI文案</a>
         <a href="#image">AI图片</a>
         <a href="#features">功能特点</a>
@@ -49,6 +50,65 @@
             <div class="result-card"></div>
             <div class="result-card dark"></div>
           </div>
+        </div>
+      </section>
+
+      <section class="section generator-section" id="generator">
+        <div class="section-heading reveal">
+          <p class="eyebrow">AI Writing Generator</p>
+          <h2>AI 文案生成器</h2>
+          <p>输入产品或主题，选择目标平台、文案风格和字数，立即模拟生成适合发布的高质量文案。</p>
+        </div>
+        <div class="generator-layout">
+          <form class="generator-form reveal" data-copy-form>
+            <label class="field-label" for="topic">产品或主题</label>
+            <textarea id="topic" name="topic" rows="4" placeholder="例如：一款适合远程团队的 AI 协作笔记工具" required></textarea>
+
+            <div class="control-grid">
+              <label class="field-label" for="platform">平台选择</label>
+              <select id="platform" name="platform">
+                <option value="小红书">小红书</option>
+                <option value="抖音">抖音</option>
+                <option value="微信公众号">微信公众号</option>
+                <option value="Instagram">Instagram</option>
+                <option value="Facebook">Facebook</option>
+              </select>
+
+              <label class="field-label" for="tone">文案风格</label>
+              <select id="tone" name="tone">
+                <option value="专业">专业</option>
+                <option value="营销">营销</option>
+                <option value="幽默">幽默</option>
+                <option value="简洁">简洁</option>
+              </select>
+
+              <label class="field-label" for="length">字数选择</label>
+              <select id="length" name="length">
+                <option value="100">100字</option>
+                <option value="300">300字</option>
+                <option value="500">500字</option>
+              </select>
+            </div>
+
+            <button class="button primary generate-button" type="submit">生成文案</button>
+          </form>
+
+          <aside class="result-panel reveal" aria-live="polite">
+            <div class="result-header">
+              <div>
+                <p class="eyebrow">Generated Copy</p>
+                <h3>生成结果</h3>
+              </div>
+              <span class="status-pill" data-result-status>等待输入</span>
+            </div>
+            <div class="copy-result-card" data-result-card>
+              <p data-result-text>你的 AI 文案会显示在这里。填写主题后点击“生成文案”，CloudAI 将基于所选平台与风格模拟输出内容。</p>
+            </div>
+            <div class="result-actions">
+              <button class="button secondary" type="button" data-copy-button disabled>一键复制</button>
+              <button class="button secondary" type="button" data-regenerate-button disabled>重新生成</button>
+            </div>
+          </aside>
         </div>
       </section>
 
